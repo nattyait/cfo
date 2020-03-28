@@ -8,6 +8,12 @@ describe('Home Page Now', () => {
     clickOnInvoice(cy, '202001-001')
     shouldSeeInvoiceDetail(cy)
   })
+  it('Should be able to get back to home page from whereever page by clicking at logo', () => {
+    cy.visit('/shouldNotHaveThisPage')
+    cy.contains('Page not found')
+    cy.get('#app_logo').click()
+    shouldSeeLastestInvoiceFirst(cy)
+  })
   function visitHomePage(cy){
     cy.visit('/')
   }
@@ -32,10 +38,4 @@ describe('Home Page Now', () => {
     cy.contains(expected)
   }
   
-  it('Should be able to get back to home page from whereever page by clicking at logo', () => {
-    cy.visit('/shouldNotHaveThisPage')
-    cy.contains('Page not found')
-    cy.get('#app_logo').click()
-    cy.contains('202001-007')
-  })
 })
