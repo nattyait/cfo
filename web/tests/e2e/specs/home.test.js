@@ -2,30 +2,36 @@
 
 describe('Home Page Now', () => {
   it('Prints an old invoice', () => {
-    cy.visit('/')
-    shouldSeeLastestInvoiceNumber(cy)
+    visitHomePage(cy)
+    shouldSeeLastestInvoiceFirst(cy)
     gotoSecondPage(cy)
     clickOnInvoice(cy, '202001-001')
-    shouldSee(cy, 'Training')
+    shouldSeeInvoiceDetail(cy)
   })
-
-  function shouldSeeLastestInvoiceNumber(cy) {
+  function visitHomePage(cy){
+    cy.visit('/')
+  }
+  function shouldSeeLastestInvoiceFirst(cy) {
     let latestInvoiceNumber = '202001-007'
     shouldSee(cy, latestInvoiceNumber)
   }
-
+  
   function gotoSecondPage(cy) {
     cy.get('.v-data-footer__icons-after').click()
   }
-
+  
   function clickOnInvoice(cy, invoiceNumber) {
     cy.contains(invoiceNumber).click()
   }
-
+  
+  function shouldSeeInvoiceDetail(cy){
+    shouldSee(cy, 'Training')
+  }
+  
   function shouldSee(cy, expected) {
     cy.contains(expected)
   }
-
+  
   it('Should be able to get back to home page from whereever page by clicking at logo', () => {
     cy.visit('/shouldNotHaveThisPage')
     cy.contains('Page not found')
