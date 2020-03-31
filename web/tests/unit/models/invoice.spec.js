@@ -83,6 +83,10 @@ describe('Invoice', () => {
       expect(invoice.invoiceDate).toEqual('2020-01-03')
     })
 
+    it('should have duplicate button ID', () => {
+      expect(invoice.getDuplicateButtonId()).toEqual('duplicate-button-202001-001')
+    })
+
     it('should have project name field which used in invoice list page', () => {
       expect(invoice.projectName).toEqual('React')
     })

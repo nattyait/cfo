@@ -33,6 +33,7 @@ export default class Invoice {
   getTargetCompanyTaxId() { return this.targetCompany.taxId }
   getTargetCompanyTel() { return this.targetCompany.tel }
   getProjectName() { return this.projectName }
+  getDuplicateButtonId() { return `duplicate-button-${this.invoiceNumber}`}
 }
 
 function getItemTotal(item) { return item.total() }

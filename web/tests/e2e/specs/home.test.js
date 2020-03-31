@@ -14,6 +14,10 @@ describe('Home Page Now', () => {
     cy.get('#app_logo').click()
     shouldSeeLastestInvoiceFirst(cy)
   })
+  it('Can duplicate old invoice', () => {
+    visitHomePage(cy)
+    duplicateLatestInvoice(cy)
+  })
   function visitHomePage(cy){
     cy.visit('/')
   }
@@ -36,6 +40,11 @@ describe('Home Page Now', () => {
   
   function shouldSee(cy, expected) {
     cy.contains(expected)
+  }
+
+  function duplicateLatestInvoice(cy) {
+    let latestInvoiceNumber = '202001-007'
+    cy.get(`#duplicate-button-${latestInvoiceNumber}`).click()
   }
   
 })

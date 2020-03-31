@@ -14,7 +14,7 @@
         </template>
 
         <template v-slot:item.action="{ item }">
-          <v-btn text small color="primary">duplicate</v-btn>
+          <v-btn :id="item.getDuplicateButtonId()" text small color="primary">duplicate</v-btn>
         </template>
       </v-data-table>
     </v-card>
